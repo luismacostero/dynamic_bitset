@@ -1,0 +1,19 @@
+*dynamic_bitset*
+A C++ dynamic_bitset implementation with serialization capabilities
+
+* Descritpion
+This is a fast and simplified implementation of a C++ dynamic_bitset similar to the one offered by [[https://www.boost.org/doc/libs/1_36_0/libs/dynamic_bitset/dynamic_bitset.html][Boost::dynamic_bitset]], with *serialization capabilities*.
+
+
+- The implementations uses the /std::vector<bool>/ class to store the bits information.
+- To easily serialize and deserialize the content, the vector size is always increased in /_blockSize/ elements.
+- In addition, the class implements debug functions to print the bitset in a driendly format.
+  
+* Serialization format
+When serialized (into a char*), the first 4 bytes are used to store the size information, while the other bytes are used to store the bits status. Each of the following bytes is used to store 8 different bits. (This is the reason why the std::vector<bool> is always increased in /_blockSize/ elements).
+  
+* ToDo
+- Make it more C++-ish
+- Use /vector<bool>::capacity/ to keep the proper size instead of use our own control variable
+- Make it more C++-modern
+  
